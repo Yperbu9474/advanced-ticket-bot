@@ -28,7 +28,7 @@ module.exports = {
   STAR_LOG_GLOBAL_ID: process.env.STAR_LOG_GLOBAL_ID,
 
   // Bot Status Configuration
-  BOT_STATUSES: ['dev : _ury1', 'MSK HUB TICKET'],
+  BOT_STATUSES: ['dev : _ury1', 'TICKET SUPPORT'],
   STATUS_UPDATE_INTERVAL: 3000, // 3 seconds
 
   // Game Configuration
@@ -79,7 +79,6 @@ module.exports = {
     THUNDER: '⚡',
     BY_NOOBOT: '🤖',
     PIN: '📌',
-    MSK: '🏷️',
     SUPPORT_ICON: '🆘',
     TOOLS: '🔧',
     WARN: '⚠️',

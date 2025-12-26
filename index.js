@@ -86,10 +86,7 @@ const AdminHandler = require('./handlers/adminHandler');
 
 const client = new Client({
   intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
-    GatewayIntentBits.GuildMembers
+    GatewayIntentBits.Guilds
   ]
 });
 
@@ -101,7 +98,7 @@ let adminHandler;
 
 // Bot status rotation
 let statusIndex = 0;
-const statuses = ['dev : _ury1', 'MSK HUB TICKET'];
+const statuses = ['dev : crayon_dev1', 'Monitoring all Tickets'];
 
 function updateBotStatus() {
   client.user.setActivity(statuses[statusIndex], { type: 0 }); // 0 = PLAYING
@@ -623,33 +620,28 @@ async function sendTicketPanel() {
   const guild = client.guilds.cache.get(config.GUILD_ID);
   const channel = guild.channels.cache.get(config.TICKET_CHANNEL_ID);
 
-  if (channel) {
     const embed = utils.createEmbed({
-      title: '<:MSKXticket:1420044135238209699> 𝗧𝗶𝗰𝗸𝗲𝘁 𝗦𝘂𝗽𝗽𝗼𝗿𝘁 𝗦𝘆𝘀𝘁𝗲𝗺 <:MSKXticket:1420044135238209699>',
+      title: '🎫 𝗧𝗶𝗰𝗸𝗲𝘁 𝗦𝘂𝗽𝗽𝗼𝗿𝘁 𝗦𝘆𝘀𝘁𝗲𝗺 🎫',
       description: `Hey everyone, our ticket support system is now live!
 You can use it to:
 
-<a:pin:1420040020659798088> Report errors or problems with bots
-<a:msk:1420028321298776124> Buy private bots directly from support
-<:16218suport:1420028949517303990> Ask questions about our services
-<:400377tools:1420028961588641892> Report bugs in our website or other services
-<a:light_bulb:1420097046802858117> Suggest new idea
+📌 Report errors or problems with bots
+🏷️ Get help with bot services
+🛠️ Ask questions about services
+🔧 Report bugs in services
+💡 Suggest new idea
 
-<:warn:1420044230247583834> Important Rules:
+⚠️ Important Rules:
 • Do not open tickets for trolling or wasting time
 • Only open a ticket if you have a real reason
 
-<:950972embaixador:1420029332734349343> Support Hours:
+👑 Support Hours:
 Our team is available 12 hours a day, every day. We aim to reply to all tickets as fast as possible.
 
-<a:by_noobot:1420043741669883974> Thank you to everyone who uses our support system. Your ideas and feedback help us grow stronger every day!
+🤖 Thank you to everyone who uses our support system. Your ideas and feedback help us grow stronger every day!
 
-<a:thunder:1420036448694042706> While you wait for support, you can play mini-games!`,
-      color: config.EMBED_COLOR,
-      footer: {
-        text: 'Select an option below to create a ticket',
-        iconURL: 'https://cdn.discordapp.com/attachments/1419845832311832666/1420093867012657263/MSKXticket.png?ex=68d424f9&is=68d2d379&hm=fe5e8b8194067e0491fc1a33d7ca7c99ae707ab8f8be3847d3f26691377b9b98'
-      }
+⚡ While you wait for support, you can play mini-games!`,
+      color: config.EMBED_COLOR
     });
 
     const selectMenu = new StringSelectMenuBuilder()
@@ -657,38 +649,37 @@ Our team is available 12 hours a day, every day. We aim to reply to all tickets 
       .setPlaceholder('Choose your ticket type...')
       .addOptions([
         {
-          label: 'Buy Private Bot',
-          description: 'Purchase private bots from our collection',
-          value: 'buy_private_bot',
-          emoji: '<:MSKXticket:1420044135238209699>'
+          label: 'Purchase Help',
+          description: 'Get help with bot purchases',
+          value: 'purchase_help',
+          emoji: '💰'
         },
         {
           label: 'Idea',
           description: 'Suggest new tools or improvements',
           value: 'idea',
-          emoji: '<a:light_bulb:1420097046802858117>'
+          emoji: '💡'
         },
         {
           label: 'Support & Asking',
           description: 'Get help with problems or ask questions',
           value: 'support',
-          emoji: '<:381258twotonedstaffids:1420097546365309029>'
+          emoji: '🛠️'
         },
         {
           label: 'Partnership',
           description: 'Business partnership opportunities',
           value: 'partnership',
-          emoji: '<a:by_noobot:1420097825131335842>'
+          emoji: '🤝'
         }
       ]);
 
     const row = new ActionRowBuilder().addComponents(selectMenu);
 
-    await channel.send({
-      embeds: [embed],
-      components: [row]
-    });
-  }
+  await channel.send({
+    embeds: [embed],
+    components: [row]
+  });
 }
 
 // Schedule cleanup tasks

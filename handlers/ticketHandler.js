@@ -55,15 +55,15 @@ class TicketHandler {
     let modal;
 
     switch (ticketType) {
-      case 'buy_private_bot':
+      case 'purchase_help':
         modal = new ModalBuilder()
           .setCustomId('buy_tool_modal')
-          .setTitle('🤖 Buy Private Bot - Ticket Creation');
+          .setTitle('🤖 Purchase Help - Ticket Creation');
 
         const toolInput = new TextInputBuilder()
           .setCustomId('tool_name')
-          .setLabel('Which private bot do you want to buy?')
-          .setPlaceholder('e.g. MSK private bot')
+          .setLabel('What do you need help with for purchases?')
+          .setPlaceholder('e.g. Bot support issue')
           .setStyle(TextInputStyle.Short)
           .setRequired(true);
 
@@ -654,8 +654,7 @@ class TicketHandler {
       const dmEmbed = utils.createEmbed({
         title: '🎟️ Ticket Created Successfully!',
         description: `Hey ${user.username}! 👋\n\nYour support ticket has been created successfully in **${ticketChannel.guild.name}**!\n\n🔗 **Ticket Channel:** ${ticketChannel}\n⏰ **Created:** ${utils.formatTimestamp(Date.now())}\n\n✨ **What happens next?**\n• Our support team will assist you shortly\n• You'll receive notifications for any updates\n• You can play mini-games while waiting!\n\n**Thank you for choosing our support system!** 💜\n*We're here to help you with anything you need.*`,
-        color: config.EMBED_COLOR,
-        thumbnail: 'https://cdn.discordapp.com/attachments/1419845832311832666/1420039553519194162/MSK_X_1.png?ex=68d3f264&is=68d2a0e4&hm=6f53d20552020389cf1c4d20992387a2764bc5d54b98e941817a016bc7fed810'
+        color: config.EMBED_COLOR
       });
 
       await user.send({ embeds: [dmEmbed] });
@@ -676,8 +675,7 @@ class TicketHandler {
       const logEmbed = utils.createEmbed({
         title: '🎟️ New Ticket Created',
         description: `**User:** ${user} (${user.tag})\n**User ID:** ${user.id}\n**Channel:** ${ticketChannel}\n**Type:** ${ticketData.type.toUpperCase()}\n**Created:** ${utils.formatTimestamp(Date.now())}`,
-        color: config.EMBED_COLOR,
-        thumbnail: 'https://cdn.discordapp.com/attachments/1419845832311832666/1420039553519194162/MSK_X_1.png?ex=68d3f264&is=68d2a0e4&hm=6f53d20552020389cf1c4d20992387a2764bc5d54b98e941817a016bc7fed810'
+        color: config.EMBED_COLOR
       });
 
       await logChannel.send({ embeds: [logEmbed] });
